@@ -9,7 +9,9 @@ function identifyCoin(coin) {
 
 	if(coin.weight === 5.670 && coin.diameter === 24.26 && coin.thickness === 1.75) {
 		return 'quarter';
-	}	 
+	}
+
+	return 'INVALID_COIN';	 
 }
 
 function assignValue(coinType) {
@@ -24,6 +26,9 @@ function assignValue(coinType) {
 			break;
 		case 'quarter':
 			coinValue = 25;
+			break;
+		case 'INVALID_COIN':
+			coinValue = 0;
 			break;
 	}
 

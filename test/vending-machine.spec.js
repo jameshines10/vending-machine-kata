@@ -21,5 +21,11 @@ describe('VendingMachine', function() {
     	vendingMachine.acceptCoin(Coin.QUARTER);
 
         expect(vendingMachine.getCurrentAmount()).toEqual(1025);
-    });    
+    });
+
+    it('should not accept pennies', function() {
+    	vendingMachine.acceptCoin(Coin.PENNY);
+
+        expect(vendingMachine.getCurrentAmount()).toEqual(1000);    	
+    });
 });

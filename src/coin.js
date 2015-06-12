@@ -13,5 +13,10 @@ var Coin = {
 		weight: 5.670,
 		diameter: 24.26,
 		thickness: 1.75
+	},
+	PENNY: {
+		weight: 2.500,
+		diameter: 19.05,
+		thickness: 1.52
 	}
 }
