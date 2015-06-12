@@ -32,4 +32,21 @@ describe('VendingMachine', function() {
     it('should display "INSERT COIN" when there are no coins inserted', function(){
     	expect(vendingMachine.getCurrentAmount()).toEqual('INSERT COIN');
     });
+
+    it('should accept nickles, dimes and quarters but no pennies', function(){
+    	vendingMachine.acceptCoin(Coin.NICKEL);
+    	vendingMachine.acceptCoin(Coin.DIME);
+    	vendingMachine.acceptCoin(Coin.PENNY);
+    	vendingMachine.acceptCoin(Coin.PENNY);
+    	vendingMachine.acceptCoin(Coin.QUARTER);
+
+    	expect(vendingMachine.getCurrentAmount()).toEqual(1040);
+    });
+
+    it('should return invalid coins', function(){
+    	vendingMachine.acceptCoin(Coin.PENNY);
+    	vendingMachine.acceptCoin(Coin.PENNY);
+
+    	expect(vendingMachine.coinReturn()).toEqual([Coin.PENNY, Coin.PENNY]);
+    });
 });
