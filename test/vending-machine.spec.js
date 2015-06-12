@@ -1,9 +1,9 @@
 describe('VendingMachine', function() {
-	var vendingMachine = new VendingMachine();
+	var vendingMachine = new VendingMachine(1000);
 
     it('should accept coins', function() {
     	vendingMachine.acceptCoin(Coin.Nickel);
 
-        expect(vendingMachiine.currentAmount()).toEqual(5);
+        expect(vendingMachine.getCurrentAmount()).toEqual(1005);
     });    
 });
