@@ -28,4 +28,8 @@ describe('VendingMachine', function() {
 
         expect(vendingMachine.getCurrentAmount()).toEqual(1000);    	
     });
+
+    it('should display "INSERT COIN" when there are no coins inserted', function(){
+    	expect(vendingMachine.getCurrentAmount()).toEqual('INSERT COIN');
+    });
 });
