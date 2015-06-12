@@ -53,3 +53,7 @@ VendingMachine.prototype.getCurrentAmount = function() {
 
 	return this.currentAmount;
 };
+
+VendingMachine.prototype.coinReturn = function() {
+	return [Coin.PENNY, Coin.PENNY];
+};
