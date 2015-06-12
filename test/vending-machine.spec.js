@@ -26,7 +26,7 @@ describe('VendingMachine', function() {
     it('should not accept pennies', function() {
     	vendingMachine.acceptCoin(Coin.PENNY);
 
-        expect(vendingMachine.getCurrentAmount()).toEqual(1000);    	
+        expect(vendingMachine.getCurrentAmount()).toEqual('INSERT COIN');    	
     });
 
     it('should display "INSERT COIN" when there are no coins inserted', function(){

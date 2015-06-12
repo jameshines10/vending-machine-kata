@@ -37,6 +37,7 @@ function assignValue(coinType) {
 
 var VendingMachine = function(initialDeposit) {
 	this.currentAmount = initialDeposit;
+	this.initialDeposit = initialDeposit;
 };
 
 VendingMachine.prototype.acceptCoin = function(coin) {
@@ -46,5 +47,9 @@ VendingMachine.prototype.acceptCoin = function(coin) {
 };
 
 VendingMachine.prototype.getCurrentAmount = function() {
+	if(this.currentAmount === this.initialDeposit) {
+		return 'INSERT COIN';
+	}
+
 	return this.currentAmount;
 };
