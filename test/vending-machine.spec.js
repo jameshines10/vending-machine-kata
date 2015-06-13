@@ -87,8 +87,8 @@ describe('VendingMachine', function() {
     	vendingMachine.acceptCoin(Coin.QUARTER);
     	vendingMachine.acceptCoin(Coin.QUARTER);
 
-    	expect(vendingMachine.dispenseCola()).toEqual([]);
+    	expect(vendingMachine.dispenseCola()).toEqual({});
     	expect(vendingMachine.displayCurrentAmount()).toEqual('PRICE');
     	expect(vendingMachine.displayCurrentAmount()).toEqual(75);
-    }
+    });
 });

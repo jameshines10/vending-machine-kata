@@ -35,8 +35,25 @@ function assignValue(coinType) {
 	return coinValue;
 }
 
+function getCurrentAmount(){
+	var coinType = null;
+	var amount = null;
+
+    if(this.successfulPurchase) {
+         amount = 'THANK YOU';
+    } else {
+        for (var coin in this.insertedCoins) {
+            coinType = identifyCoin(this.insertedCoins[coin]);
+            amount += assignValue(coinType);
+        }
+    }
+
+	return amount;
+}
+
 var VendingMachine = function(initialDeposit) {
 	this.successfulPurchase = false;
+    this.notEnoughMoney = false;
 	this.currentAmount = 0;
 	this.totalSales = initialDeposit;
 	this.coinReturn = [];
@@ -50,16 +67,21 @@ VendingMachine.prototype.acceptCoin = function(coin) {
 		this.coinReturn.push(coin);
 	} else {
 		this.insertedCoins.push(coin);
-		this.currentAmount += assignValue(coinType);
 	}
 };
 
 VendingMachine.prototype.displayCurrentAmount = function() {
 	if(this.insertedCoins.length === 0 && !this.successfulPurchase) {
 		return 'INSERT COIN';
-	} else {
-		this.successfulPurchase = false;
-		return this.currentAmount;
+	} else if(this.notEnoughMoney) {
+        this.notEnoughMoney = false;
+        return 'PRICE';
+    } else if(this.successfulPurchase) {
+        this.successfulPurchase = false;
+
+        return 'THANK YOU';
+    } else {
+		return getCurrentAmount.call(this);
 	}	
 };
 
@@ -68,11 +90,15 @@ VendingMachine.prototype.returnCoins = function() {
 };
 
 VendingMachine.prototype.dispenseCola = function() {
-	if(this.currentAmount >= 100) {
-		this.currentAmount = 'THANK YOU';
+	if(getCurrentAmount.call(this) >= Product.COLA.price) {
 		this.insertedCoins = [];
 		this.successfulPurchase = true;
 
 		return Product.COLA;	
+	} else {
+		this.successfulPurchase = false;
+        this.notEnoughMoney = true;
+
+        return {};
 	}
 };
