@@ -61,12 +61,24 @@ describe('VendingMachine', function() {
     	expect(vendingMachine.displayCurrentAmount()).toEqual(50);
     });
 
-    it('should dispense the appropriate product', function(){
+    it('should dispense cola if enough coins have been accepted', function(){
     	vendingMachine.acceptCoin(Coin.QUARTER);
     	vendingMachine.acceptCoin(Coin.QUARTER);
     	vendingMachine.acceptCoin(Coin.QUARTER);
     	vendingMachine.acceptCoin(Coin.QUARTER);
 
     	expect(vendingMachine.dispenseCola()).toEqual(Product.COLA);
+    	expect(vendingMachine.displayCurrentAmount()).toEqual('THANK YOU');
+    });
+
+    it('should display THANK YOU then INSERT COIN after a successful purchase', function(){
+    	vendingMachine.acceptCoin(Coin.QUARTER);
+    	vendingMachine.acceptCoin(Coin.QUARTER);
+    	vendingMachine.acceptCoin(Coin.QUARTER);
+    	vendingMachine.acceptCoin(Coin.QUARTER);
+
+    	expect(vendingMachine.dispenseCola()).toEqual(Product.COLA);
+    	expect(vendingMachine.displayCurrentAmount()).toEqual('THANK YOU');
+    	expect(vendingMachine.displayCurrentAmount()).toEqual('INSERT COIN');
     });
 });
