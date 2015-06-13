@@ -81,4 +81,14 @@ describe('VendingMachine', function() {
     	expect(vendingMachine.displayCurrentAmount()).toEqual('THANK YOU');
     	expect(vendingMachine.displayCurrentAmount()).toEqual('INSERT COIN');
     });
+
+    it('should display "PRICE" and the price of the product if there is not enough money', function() {
+    	vendingMachine.acceptCoin(Coin.QUARTER);
+    	vendingMachine.acceptCoin(Coin.QUARTER);
+    	vendingMachine.acceptCoin(Coin.QUARTER);
+
+    	expect(vendingMachine.dispenseCola()).toEqual([]);
+    	expect(vendingMachine.displayCurrentAmount()).toEqual('PRICE');
+    	expect(vendingMachine.displayCurrentAmount()).toEqual(75);
+    }
 });
