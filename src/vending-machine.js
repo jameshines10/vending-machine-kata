@@ -36,9 +36,10 @@ function assignValue(coinType) {
 }
 
 var VendingMachine = function(initialDeposit) {
-	this.currentAmount = initialDeposit;
+	this.currentAmount = 0;
 	this.initialDeposit = initialDeposit;
 	this.coinReturn = [];
+	this.insertedCoins = [];
 };
 
 VendingMachine.prototype.acceptCoin = function(coin) {
@@ -47,12 +48,13 @@ VendingMachine.prototype.acceptCoin = function(coin) {
 	if(coinType === 'INVALID_COIN') {
 		this.coinReturn.push(coin);
 	} else {
+		this.insertedCoins.push(coin);
 		this.currentAmount += assignValue(coinType);
 	}
 };
 
-VendingMachine.prototype.getCurrentAmount = function() {
-	if(this.currentAmount === this.initialDeposit) {
+VendingMachine.prototype.displayCurrentAmount = function() {
+	if(this.currentAmount === 0) {
 		return 'INSERT COIN';
 	}
 
@@ -61,4 +63,9 @@ VendingMachine.prototype.getCurrentAmount = function() {
 
 VendingMachine.prototype.returnCoins = function() {
 	return this.coinReturn;
+};
+
+VendingMachine.prototype.dispenseCola = function() {
+	
+	return Product.COLA;
 };
