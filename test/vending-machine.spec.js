@@ -47,6 +47,17 @@ describe('VendingMachine', function() {
     	vendingMachine.acceptCoin(Coin.PENNY);
     	vendingMachine.acceptCoin(Coin.PENNY);
 
-    	expect(vendingMachine.coinReturn()).toEqual([Coin.PENNY, Coin.PENNY]);
+    	expect(vendingMachine.returnCoins()).toEqual([Coin.PENNY, Coin.PENNY]);
+    });
+
+    it('should not return valid coins', function(){
+    	vendingMachine.acceptCoin(Coin.NICKEL);
+    	vendingMachine.acceptCoin(Coin.DIME);
+    	vendingMachine.acceptCoin(Coin.DIME);
+    	vendingMachine.acceptCoin(Coin.PENNY);
+    	vendingMachine.acceptCoin(Coin.QUARTER);
+
+    	expect(vendingMachine.returnCoins()).toEqual([Coin.PENNY]);
+    	expect(vendingMachine.getCurrentAmount()).toEqual(1050);
     });
 });

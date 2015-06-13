@@ -38,12 +38,17 @@ function assignValue(coinType) {
 var VendingMachine = function(initialDeposit) {
 	this.currentAmount = initialDeposit;
 	this.initialDeposit = initialDeposit;
+	this.coinReturn = [];
 };
 
 VendingMachine.prototype.acceptCoin = function(coin) {
 	var coinType = identifyCoin(coin);
 
-	this.currentAmount += assignValue(coinType);
+	if(coinType === 'INVALID_COIN') {
+		this.coinReturn.push(coin);
+	} else {
+		this.currentAmount += assignValue(coinType);
+	}
 };
 
 VendingMachine.prototype.getCurrentAmount = function() {
@@ -54,6 +59,6 @@ VendingMachine.prototype.getCurrentAmount = function() {
 	return this.currentAmount;
 };
 
-VendingMachine.prototype.coinReturn = function() {
-	return [Coin.PENNY, Coin.PENNY];
+VendingMachine.prototype.returnCoins = function() {
+	return this.coinReturn;
 };
