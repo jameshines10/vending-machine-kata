@@ -1,30 +1,56 @@
 describe('VendingMachine', function() {
 	var vendingMachine = null;
+	var nickel, dime, quarter = {};
 
 	beforeEach(function(){
-		vendingMachine = new VendingMachine(1000);
-	});	
+		vendingMachine = new VMK.VendingMachine(1000);
+
+		VMK.Coin = {
+			NICKEL: {
+				weight: 5, // in grams
+				diameter: 21.21, // in mm
+				thickness: 1.95 // in mm
+			},
+			DIME: {
+				weight: 2.268,
+				diameter: 17.91,
+				thickness: 1.35
+			},
+			QUARTER: {
+				weight: 5.670,
+				diameter: 24.26,
+				thickness: 1.75
+			},
+			PENNY: {
+				weight: 2.500,
+				diameter: 19.05,
+				thickness: 1.52
+			}
+		}
+
+		nickel = VMK.Coin.NICKEL;
+	});
 
     it('should accept nickels', function() {
-    	vendingMachine.acceptCoin(Coin.NICKEL);
+    	vendingMachine.acceptCoin(nickel);
 
         expect(vendingMachine.displayCurrentAmount()).toEqual(5);
     });
 
     it('should accept dimes', function() {
-    	vendingMachine.acceptCoin(Coin.DIME);
+    	vendingMachine.acceptCoin(VMK.Coin.DIME);
 
         expect(vendingMachine.displayCurrentAmount()).toEqual(10);
     });
 
     it('should accept quarters', function() {
-    	vendingMachine.acceptCoin(Coin.QUARTER);
+    	vendingMachine.acceptCoin(VMK.Coin.QUARTER);
 
         expect(vendingMachine.displayCurrentAmount()).toEqual(25);
     });
 
     it('should not accept pennies', function() {
-    	vendingMachine.acceptCoin(Coin.PENNY);
+    	vendingMachine.acceptCoin(VMK.Coin.PENNY);
 
         expect(vendingMachine.displayCurrentAmount()).toEqual('INSERT COIN');    	
     });
@@ -34,11 +60,11 @@ describe('VendingMachine', function() {
     });
 
     it('should accept nickles, dimes and quarters but no pennies', function(){
-    	vendingMachine.acceptCoin(Coin.NICKEL);
-    	vendingMachine.acceptCoin(Coin.DIME);
-    	vendingMachine.acceptCoin(Coin.PENNY);
-    	vendingMachine.acceptCoin(Coin.PENNY);
-    	vendingMachine.acceptCoin(Coin.QUARTER);
+    	vendingMachine.acceptCoin(VMK.Coin.NICKEL);
+    	vendingMachine.acceptCoin(VMK.Coin.DIME);
+    	vendingMachine.acceptCoin(VMK.Coin.PENNY);
+    	vendingMachine.acceptCoin(VMK.Coin.PENNY);
+    	vendingMachine.acceptCoin(VMK.Coin.QUARTER);
 
     	expect(vendingMachine.displayCurrentAmount()).toEqual(40);
     });
