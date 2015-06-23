@@ -69,6 +69,7 @@ var VMK;
             currentAmount = 0;
             totalSales = initialDeposit;
             coinReturn = [];
+
             this.insertedCoins = [];
         }
 
